@@ -30,9 +30,10 @@ services:
     ports:
       - 5432:5432
   proxy:
-    image: proxy
+    image: nginx:alpine
     container_name: proxy
-    build: ./proxy
+    volumes:
+      - ./proxy/myconf.template:/etc/nginx/templates/default.conf.template
     ports:
       - 80:80
     depends_on:
